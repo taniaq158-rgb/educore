@@ -10,6 +10,9 @@ package edu.uam.educore.model.personas;
  */
 
 import java.time.LocalDate;
+import edu.uam.educore.enums.TipoEmpleado;
+import java.time.LocalDate;
+
 
 public class Empleado extends Persona {
 
