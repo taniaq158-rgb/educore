@@ -1,24 +1,27 @@
+
+
 package edu.uam.educore.view;
 
+import edu.uam.educore.dao.ListaEmpleadoRepo;
 import edu.uam.educore.dao.ListaEstudianteRepo;
 import java.util.Scanner;
 
 public class MenuPrincipalView extends VistaBase {
 
   private final EstudianteView estudianteView;
+  private final EmpleadoView empleadoView;
 
   public MenuPrincipalView(Scanner scanner) {
     super(scanner);
-
     // Repositorios compartidos — una sola instancia por entidad.
     // Los módulos que necesiten acceder a los mismos datos reciben la misma instancia.
     ListaEstudianteRepo estudianteRepo = new ListaEstudianteRepo();
-    // ListaEmpleadoRepo empleadoRepo = new ListaEmpleadoRepo();  // TODO: Módulo Empleados
+    ListaEmpleadoRepo empleadoRepo = new ListaEmpleadoRepo();
     // ListaEdificioRepo edificioRepo = new ListaEdificioRepo();  // TODO: Módulo Académico
     // ListaSeccionRepo  seccionRepo  = new ListaSeccionRepo();   // TODO: Módulo Académico
 
     this.estudianteView = new EstudianteView(scanner, estudianteRepo);
-    // this.empleadoView = new EmpleadoView(scanner, empleadoRepo);
+    this.empleadoView = new EmpleadoView(scanner, empleadoRepo);
     // this.edificioView = new EdificioView(scanner, edificioRepo);
     // this.seccionView  = new SeccionView(scanner, seccionRepo, empleadoRepo, estudianteRepo,
     // edificioRepo);
@@ -30,13 +33,13 @@ public class MenuPrincipalView extends VistaBase {
     while (corriendo) {
       switch (mostrarMenuPrincipal()) {
         case 1 -> estudianteView.iniciar();
-        case 2 -> mostrarMensaje("Módulo de empleados — pendiente (mismo patrón que Estudiantes)");
-        case 3 -> mostrarMensaje("Módulo académico — pendiente (mismo patrón que Estudiantes)");
+        case 2 -> empleadoView.iniciar();
+        case 3 -> mostrarMensaje("Modulo academico — pendiente (mismo patron que Estudiantes)");
         case 0 -> {
           mostrarMensaje("¡Hasta pronto!");
           corriendo = false;
         }
-        default -> mostrarError("Opción inválida. Ingrese un número del 0 al 3.");
+        default -> mostrarError("Opción inválida. Ingrese un numero del 0 al 3.");
       }
     }
   }
@@ -44,17 +47,17 @@ public class MenuPrincipalView extends VistaBase {
   public void mostrarBienvenida() {
     System.out.println("╔══════════════════════════════════════╗");
     System.out.println("║        EduCore v1.0                  ║");
-    System.out.println("║  Sistema de Administración Educativa ║");
+    System.out.println("║  Sistema de Administracion Educativa ║");
     System.out.println("╚══════════════════════════════════════╝");
   }
 
   public int mostrarMenuPrincipal() {
-    System.out.println("\n--- MENÚ PRINCIPAL ---");
-    System.out.println("1. Gestión de Estudiantes");
-    System.out.println("2. Gestión de Empleados");
-    System.out.println("3. Gestión Académica (Edificios, Aulas, Secciones)");
+    System.out.println("\n_____ MENU PRINCIPAL _____");
+    System.out.println("1. Gestion de Estudiantes");
+    System.out.println("2. Gestion de Empleados");
+    System.out.println("3. Gestion Académica (Edificios, Aulas, Secciones)");
     System.out.println("0. Salir");
-    System.out.print("Seleccione una opción: ");
+    System.out.print("Seleccione una opcion: ");
     return leerEntero();
   }
 }
