@@ -98,13 +98,13 @@ public class EdificioController {
 
   private void validarEdificio(String codigo, String nombre) {
     if (codigo == null || codigo.isEmpty() || nombre == null || nombre.isEmpty()) {
-      throw new IllegalArgumentException("Código y nombre son obligatorios.");
+      throw new IllegalArgumentException("Codigo y nombre son obligatorios.");
     }
   }
 
   private void validarAula(String numero, int capacidad, TipoAula tipo) {
     if (numero == null || numero.isEmpty()) {
-      throw new IllegalArgumentException("El número de aula es obligatorio.");
+      throw new IllegalArgumentException("El numero de aula es obligatorio.");
     }
     if (capacidad <= 0) {
       throw new IllegalArgumentException("La capacidad debe ser mayor a cero.");
