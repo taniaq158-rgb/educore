@@ -10,8 +10,8 @@ package edu.uam.educore.controller;
  */
 
 import edu.uam.educore.dao.Repositorio;
+import edu.uam.educore.enums.TipoEmpleado;
 import edu.uam.educore.model.personas.Empleado;
-import edu.uam.educore.model.personas.TipoEmpleado;
 import edu.uam.educore.util.Validador;
 import java.time.LocalDate;
 import java.util.List;
@@ -85,7 +85,7 @@ public class EmpleadoController {
     repo.eliminar(id);
   }
 
-  // ── Helpers internos ──────────────────────────────────────────────────────
+  // ── Helpers internos
 
   private void validarBase(
       String nombre,
@@ -98,13 +98,13 @@ public class EmpleadoController {
       throw new IllegalArgumentException("Nombre y apellidos son obligatorios.");
     }
     if (!Validador.validarEmail(email)) {
-      throw new IllegalArgumentException("Email inválido (debe contener '@' y '.').");
+      throw new IllegalArgumentException("Email invalido (debe contener '@' y '.').");
     }
     if (salario < 0) {
       throw new IllegalArgumentException("El salario no puede ser negativo.");
     }
     if (!Validador.validarFechaIngreso(fechaIngreso)) {
-      throw new IllegalArgumentException("Fecha de ingreso inválida (no puede ser futura).");
+      throw new IllegalArgumentException("Fecha de ingreso invalida (no puede ser futura).");
     }
     if (tipo == null) {
       throw new IllegalArgumentException("El tipo de empleado es obligatorio.");
