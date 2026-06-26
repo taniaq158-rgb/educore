@@ -5,10 +5,8 @@
 package edu.uam.educore.dao;
 
 /**
- *
  * @author tania
  */
-
 import edu.uam.educore.model.personas.Empleado;
 import java.util.ArrayList;
 import java.util.List;

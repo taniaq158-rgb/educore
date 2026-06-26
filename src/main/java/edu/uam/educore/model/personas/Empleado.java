@@ -3,16 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package edu.uam.educore.model.personas;
-
-/**
- *
- * @author tania
- */
-
-import java.time.LocalDate;
 import edu.uam.educore.enums.TipoEmpleado;
 import java.time.LocalDate;
-
 
 public class Empleado extends Persona {
 
@@ -59,10 +51,10 @@ public class Empleado extends Persona {
     return tipo.toString();
   }
 
-  
   public TipoEmpleado getTipoEnum() {
-  return tipo;
-}
+    return tipo;
+  }
+
   @Override
   public String getInfo() {
     return String.format(

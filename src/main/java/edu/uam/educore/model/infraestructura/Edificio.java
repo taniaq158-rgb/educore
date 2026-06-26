@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
+
+
 package edu.uam.educore.model.infraestructura;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- *
- * @author tania
- */
 
 public class Edificio {
 

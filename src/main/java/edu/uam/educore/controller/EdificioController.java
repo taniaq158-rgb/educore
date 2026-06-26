@@ -1,23 +1,21 @@
 
 
 package edu.uam.educore.controller;
+
 import edu.uam.educore.dao.Repositorio;
 import edu.uam.educore.enums.TipoAula;
 import edu.uam.educore.model.infraestructura.Aula;
 import edu.uam.educore.model.infraestructura.Edificio;
 import java.util.List;
 import java.util.Optional;
-/**
- *
- * @author tania
- */
 
 
 public class EdificioController {
 
   private final Repositorio<Edificio> repo;
   private int proximoIdEdificio = 1;
-  private int proximoIdAula = 1; // único a nivel de todo el sistema — una sola instancia de este controller
+  private int proximoIdAula =
+      1; // único a nivel de todo el sistema — una sola instancia de este controller
 
   public EdificioController(Repositorio<Edificio> repo) {
     this.repo = repo;

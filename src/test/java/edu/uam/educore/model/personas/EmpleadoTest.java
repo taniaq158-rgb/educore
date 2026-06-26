@@ -1,14 +1,12 @@
 
-
 package edu.uam.educore.model.personas;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import edu.uam.educore.enums.TipoEmpleado;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
-/**
- *
- * @author tania
- */
+
 
 
 class EmpleadoTest {
@@ -31,7 +29,13 @@ class EmpleadoTest {
   void getTipo_retorna_texto_correcto() {
     Empleado e =
         new Empleado(
-            1, "Carlos", "Mora", "c@uam.edu", 600000.0, LocalDate.of(2023, 1, 15), TipoEmpleado.GUARDA);
+            1,
+            "Carlos",
+            "Mora",
+            "c@uam.edu",
+            600000.0,
+            LocalDate.of(2023, 1, 15),
+            TipoEmpleado.GUARDA);
     assertEquals("GUARDA", e.getTipo());
   }
 
@@ -58,7 +62,13 @@ class EmpleadoTest {
   void setTipo_actualiza_el_tipo_y_getInfo_lo_refleja() {
     Empleado e =
         new Empleado(
-            1, "Ana", "Vega", "a@uam.edu", 500000.0, LocalDate.of(2022, 6, 10), TipoEmpleado.ADMINISTRATIVO);
+            1,
+            "Ana",
+            "Vega",
+            "a@uam.edu",
+            500000.0,
+            LocalDate.of(2022, 6, 10),
+            TipoEmpleado.ADMINISTRATIVO);
 
     e.setTipo(TipoEmpleado.DOCENTE);
 

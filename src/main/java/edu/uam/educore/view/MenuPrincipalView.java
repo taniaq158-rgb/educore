@@ -1,5 +1,3 @@
-
-
 package edu.uam.educore.view;
 
 import edu.uam.educore.dao.ListaEdificioRepo;

@@ -1,18 +1,13 @@
-
-
-
 package edu.uam.educore.dao;
+
 import edu.uam.educore.model.infraestructura.Edificio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 /**
- *
  * @author tania
  */
-
-
 public class ListaEdificioRepo extends Repositorio<Edificio> {
 
   private final List<Edificio> lista = new ArrayList<>();

@@ -1,5 +1,5 @@
-
 package edu.uam.educore.dao;
+
 import edu.uam.educore.model.academico.Seccion;
 import java.util.ArrayList;
 import java.util.List;

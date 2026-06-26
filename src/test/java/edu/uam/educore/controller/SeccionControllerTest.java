@@ -1,4 +1,3 @@
-
 package edu.uam.educore.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +11,6 @@ import edu.uam.educore.enums.TipoEmpleado;
 import edu.uam.educore.model.infraestructura.Aula;
 import edu.uam.educore.model.infraestructura.Edificio;
 import edu.uam.educore.model.personas.Empleado;
-import edu.uam.educore.model.personas.EstudianteRegular;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +24,14 @@ class SeccionControllerTest {
     ListaEdificioRepo edificioRepo = new ListaEdificioRepo();
 
     Empleado guarda =
-        new Empleado(1, "Carlos", "Mora", "c@uam.edu", 500000.0, LocalDate.of(2023, 1, 1), TipoEmpleado.GUARDA);
+        new Empleado(
+            1,
+            "Carlos",
+            "Mora",
+            "c@uam.edu",
+            500000.0,
+            LocalDate.of(2023, 1, 1),
+            TipoEmpleado.GUARDA);
     empleadoRepo.guardar(guarda);
 
     Edificio edificio = new Edificio(1, "A", "Edificio Central");
@@ -52,7 +57,14 @@ class SeccionControllerTest {
     ListaEdificioRepo edificioRepo = new ListaEdificioRepo();
 
     Empleado docente =
-        new Empleado(1, "Tania", "Rojas", "t@uam.edu", 800000.0, LocalDate.of(2022, 1, 1), TipoEmpleado.DOCENTE);
+        new Empleado(
+            1,
+            "Tania",
+            "Rojas",
+            "t@uam.edu",
+            800000.0,
+            LocalDate.of(2022, 1, 1),
+            TipoEmpleado.DOCENTE);
     empleadoRepo.guardar(docente);
 
     Edificio edificio = new Edificio(1, "A", "Edificio Central");
@@ -65,8 +77,7 @@ class SeccionControllerTest {
     controller.registrar("PROG3-01", "Programación III", 1, 1);
 
     Exception ex =
-        assertThrows(
-            IllegalArgumentException.class, () -> controller.agregarEstudiante(1, 999));
+        assertThrows(IllegalArgumentException.class, () -> controller.agregarEstudiante(1, 999));
     assertTrue(ex.getMessage().contains("999"));
   }
 
@@ -78,7 +89,14 @@ class SeccionControllerTest {
     ListaEdificioRepo edificioRepo = new ListaEdificioRepo();
 
     Empleado docente =
-        new Empleado(1, "Tania", "Rojas", "t@uam.edu", 800000.0, LocalDate.of(2022, 1, 1), TipoEmpleado.DOCENTE);
+        new Empleado(
+            1,
+            "Tania",
+            "Rojas",
+            "t@uam.edu",
+            800000.0,
+            LocalDate.of(2022, 1, 1),
+            TipoEmpleado.DOCENTE);
     empleadoRepo.guardar(docente);
 
     Edificio edificio = new Edificio(1, "A", "Edificio Central");

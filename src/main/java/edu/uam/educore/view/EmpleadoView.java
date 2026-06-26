@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package edu.uam.educore.view;
+
 import edu.uam.educore.controller.EmpleadoController;
 import edu.uam.educore.dao.Repositorio;
 import edu.uam.educore.enums.TipoEmpleado;
@@ -10,12 +11,10 @@ import edu.uam.educore.model.personas.Empleado;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
+
 /**
- *
  * @author tania
  */
-
-
 public class EmpleadoView extends VistaBase {
 
   private final EmpleadoController controller;
@@ -25,7 +24,7 @@ public class EmpleadoView extends VistaBase {
     this.controller = new EmpleadoController(repo);
   }
 
-  //Ciclo de la vista 
+  // Ciclo de la vista
 
   public void iniciar() {
     boolean activo = true;
@@ -49,7 +48,7 @@ public class EmpleadoView extends VistaBase {
     }
   }
 
-  //Acciones 
+  // Acciones
 
   private void registrar() {
     String nombre = leerTexto("Nombre");

@@ -1,5 +1,3 @@
-
-
 package edu.uam.educore.view;
 
 import edu.uam.educore.controller.SeccionController;
@@ -116,7 +114,8 @@ public class SeccionView extends VistaBase {
       } else {
         System.out.println("  Estudiantes inscritos:");
         for (Estudiante e : estudiantes) {
-          System.out.println("    ID " + e.getId() + " | " + e.getNombre() + " " + e.getApellidos());
+          System.out.println(
+              "    ID " + e.getId() + " | " + e.getNombre() + " " + e.getApellidos());
         }
       }
     } catch (Exception e) {

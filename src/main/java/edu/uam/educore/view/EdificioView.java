@@ -1,5 +1,5 @@
-
 package edu.uam.educore.view;
+
 import edu.uam.educore.controller.EdificioController;
 import edu.uam.educore.dao.Repositorio;
 import edu.uam.educore.enums.TipoAula;
@@ -7,11 +7,10 @@ import edu.uam.educore.model.infraestructura.Aula;
 import edu.uam.educore.model.infraestructura.Edificio;
 import java.util.List;
 import java.util.Scanner;
+
 /**
- *
  * @author tania
  */
-
 public class EdificioView extends VistaBase {
 
   private final EdificioController controller;
@@ -72,8 +71,15 @@ public class EdificioView extends VistaBase {
       System.out.println("\n_____ EDIFICIOS REGISTRADOS (" + lista.size() + ") _____");
       for (Edificio e : lista) {
         System.out.println(
-            "  ID " + e.getId() + " | " + e.getCodigo() + " — " + e.getNombre()
-                + " (" + e.listarAulas().size() + " aulas)");
+            "  ID "
+                + e.getId()
+                + " | "
+                + e.getCodigo()
+                + " — "
+                + e.getNombre()
+                + " ("
+                + e.listarAulas().size()
+                + " aulas)");
       }
     } catch (Exception e) {
       mostrarError(e.getMessage());
@@ -96,8 +102,14 @@ public class EdificioView extends VistaBase {
         System.out.println("  Aulas:");
         for (Aula a : aulas) {
           System.out.println(
-              "    ID " + a.getId() + " | " + a.getNumero() + " | " + a.getTipo()
-                  + " | Cap: " + a.getCapacidad());
+              "    ID "
+                  + a.getId()
+                  + " | "
+                  + a.getNumero()
+                  + " | "
+                  + a.getTipo()
+                  + " | Cap: "
+                  + a.getCapacidad());
         }
       }
     } catch (Exception e) {
@@ -152,8 +164,14 @@ public class EdificioView extends VistaBase {
       System.out.println("\n_____ AULAS DEL EDIFICIO (" + aulas.size() + ") _____");
       for (Aula a : aulas) {
         System.out.println(
-            "  ID " + a.getId() + " | " + a.getNumero() + " | " + a.getTipo()
-                + " | Cap: " + a.getCapacidad());
+            "  ID "
+                + a.getId()
+                + " | "
+                + a.getNumero()
+                + " | "
+                + a.getTipo()
+                + " | Cap: "
+                + a.getCapacidad());
       }
     } catch (Exception e) {
       mostrarError(e.getMessage());

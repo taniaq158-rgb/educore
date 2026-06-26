@@ -4,10 +4,6 @@
  */
 package edu.uam.educore.model.infraestructura;
 import edu.uam.educore.enums.TipoAula;
-/**
- *
- * @author tania
- */
 
 public class Aula {
 
