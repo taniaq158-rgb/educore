@@ -1,4 +1,3 @@
-
 package edu.uam.educore.model.personas;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -6,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import edu.uam.educore.enums.TipoEmpleado;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
-
-
 
 class EmpleadoTest {
 

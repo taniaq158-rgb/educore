@@ -1,5 +1,3 @@
-
-
 package edu.uam.educore.model.academico;
 
 import edu.uam.educore.model.infraestructura.Aula;

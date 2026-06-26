@@ -1,4 +1,3 @@
-
 package edu.uam.educore.model.personas;
 
 import static org.junit.jupiter.api.Assertions.*;

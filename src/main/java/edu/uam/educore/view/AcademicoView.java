@@ -1,4 +1,3 @@
-
 package edu.uam.educore.view;
 
 import java.util.Scanner;

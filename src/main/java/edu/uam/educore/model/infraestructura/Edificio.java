@@ -1,12 +1,8 @@
-
-
-
 package edu.uam.educore.model.infraestructura;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 
 public class Edificio {
 

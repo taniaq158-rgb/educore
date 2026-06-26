@@ -1,6 +1,5 @@
-
-
 package edu.uam.educore.controller;
+
 import edu.uam.educore.dao.Repositorio;
 import edu.uam.educore.enums.TipoEmpleado;
 import edu.uam.educore.model.personas.Empleado;

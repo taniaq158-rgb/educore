@@ -1,5 +1,3 @@
-
-
 package edu.uam.educore.controller;
 
 import edu.uam.educore.dao.Repositorio;
@@ -8,7 +6,6 @@ import edu.uam.educore.model.infraestructura.Aula;
 import edu.uam.educore.model.infraestructura.Edificio;
 import java.util.List;
 import java.util.Optional;
-
 
 public class EdificioController {
 

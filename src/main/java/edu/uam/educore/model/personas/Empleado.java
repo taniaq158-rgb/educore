@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package edu.uam.educore.model.personas;
+
 import edu.uam.educore.enums.TipoEmpleado;
 import java.time.LocalDate;
 

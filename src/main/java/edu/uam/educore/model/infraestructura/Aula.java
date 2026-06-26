@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package edu.uam.educore.model.infraestructura;
+
 import edu.uam.educore.enums.TipoAula;
 
 public class Aula {
