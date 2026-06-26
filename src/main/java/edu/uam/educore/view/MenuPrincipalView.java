@@ -5,6 +5,7 @@ package edu.uam.educore.view;
 import edu.uam.educore.dao.ListaEdificioRepo;
 import edu.uam.educore.dao.ListaEmpleadoRepo;
 import edu.uam.educore.dao.ListaEstudianteRepo;
+import edu.uam.educore.dao.ListaSeccionRepo;
 import java.util.Scanner;
 
 public class MenuPrincipalView extends VistaBase {
@@ -18,14 +19,15 @@ public class MenuPrincipalView extends VistaBase {
     ListaEstudianteRepo estudianteRepo = new ListaEstudianteRepo();
     ListaEmpleadoRepo empleadoRepo = new ListaEmpleadoRepo();
     ListaEdificioRepo edificioRepo = new ListaEdificioRepo();
-    // ListaSeccionRepo seccionRepo = new ListaSeccionRepo(); // TODO: módulo Sección
+    ListaSeccionRepo seccionRepo = new ListaSeccionRepo();
 
     this.estudianteView = new EstudianteView(scanner, estudianteRepo);
     this.empleadoView = new EmpleadoView(scanner, empleadoRepo);
 
     EdificioView edificioView = new EdificioView(scanner, edificioRepo);
-    // SeccionView seccionView = new SeccionView(scanner, seccionRepo, empleadoRepo, estudianteRepo, edificioRepo); // TODO
-    this.academicoView = new AcademicoView(scanner, edificioView);
+    SeccionView seccionView =
+        new SeccionView(scanner, seccionRepo, empleadoRepo, estudianteRepo, edificioRepo);
+    this.academicoView = new AcademicoView(scanner, edificioView, seccionView);
   }
 
   public void iniciar() {
@@ -40,7 +42,7 @@ public class MenuPrincipalView extends VistaBase {
           mostrarMensaje("¡Hasta pronto!");
           corriendo = false;
         }
-        default -> mostrarError("Opción inválida. Ingrese un número del 0 al 3.");
+        default -> mostrarError("Opcion invalida. Ingrese un número del 0 al 3.");
       }
     }
   }
@@ -53,10 +55,10 @@ public class MenuPrincipalView extends VistaBase {
   }
 
   public int mostrarMenuPrincipal() {
-    System.out.println("\n--- MENÚ PRINCIPAL ---");
+    System.out.println("\n--- MENU PRINCIPAL ---");
     System.out.println("1. Gestion de Estudiantes");
     System.out.println("2. Gestion de Empleados");
-    System.out.println("3. Gestion Académica (Edificios, Aulas, Secciones)");
+    System.out.println("3. Gestion Academica (Edificios, Aulas, Secciones)");
     System.out.println("0. Salir");
     System.out.print("Seleccione una opcion: ");
     return leerEntero();
