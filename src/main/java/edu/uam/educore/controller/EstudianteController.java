@@ -80,7 +80,7 @@ public class EstudianteController {
       throw new IllegalArgumentException("Nombre, apellidos y carnet son obligatorios.");
     }
     if (!Validador.validarEmail(email)) {
-      throw new IllegalArgumentException("Email inválido (debe contener '@' y '.').");
+      throw new IllegalArgumentException("Email invalido (debe contener '@' y '.').");
     }
   }
 }

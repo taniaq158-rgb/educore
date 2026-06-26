@@ -34,7 +34,7 @@ public class EstudianteView extends VistaBase {
       } else if (opcion == 0) {
         activo = false;
       } else {
-        mostrarError("Opción inválida.");
+        mostrarError("Opción invalida.");
       }
     }
   }
@@ -44,7 +44,7 @@ public class EstudianteView extends VistaBase {
   private void registrar() {
     int tipo = mostrarTipoEstudiante();
     if (tipo < 1 || tipo > 2) {
-      mostrarError("Tipo inválido.");
+      mostrarError("Tipo invalido.");
       return;
     }
 
@@ -130,9 +130,9 @@ public class EstudianteView extends VistaBase {
         return;
       }
       System.out.println("\n  " + existente.getInfo());
-      String confirmacion = leerTexto("¿Confirma la eliminación? (s/n)");
+      String confirmacion = leerTexto("¿Confirma la eliminacion? (s/n)");
       if (!confirmacion.equalsIgnoreCase("s")) {
-        mostrarMensaje("Operación cancelada.");
+        mostrarMensaje("Operacion cancelada.");
         return;
       }
       controller.eliminar(id);
@@ -145,7 +145,7 @@ public class EstudianteView extends VistaBase {
   // ── Menús ─────────────────────────────────────────────────────────────────
 
   private int mostrarMenu() {
-    System.out.println("\n--- GESTIÓN DE ESTUDIANTES ---");
+    System.out.println("\n--- GESTION DE ESTUDIANTES ---");
     System.out.println("1. Registrar estudiante");
     System.out.println("2. Listar todos");
     System.out.println("3. Buscar por ID");

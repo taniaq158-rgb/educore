@@ -33,7 +33,7 @@ public class SeccionController {
   public Seccion registrar(String codigo, String nombre, int aulaId, int docenteId)
       throws Exception {
     if (codigo == null || codigo.isEmpty() || nombre == null || nombre.isEmpty()) {
-      throw new IllegalArgumentException("Código y nombre son obligatorios.");
+      throw new IllegalArgumentException("Codigo y nombre son obligatorios.");
     }
 
     Optional<Empleado> resultadoEmpleado = empleadoRepo.buscarPorId(docenteId);
@@ -60,7 +60,7 @@ public class SeccionController {
   public void agregarEstudiante(int seccionId, int estudianteId) throws Exception {
     Seccion seccion = buscarPorId(seccionId);
     if (seccion == null) {
-      throw new IllegalArgumentException("No existe sección con ID " + seccionId + ".");
+      throw new IllegalArgumentException("No existe seccion con ID " + seccionId + ".");
     }
     Optional<Estudiante> estudiante = estudianteRepo.buscarPorId(estudianteId);
     if (estudiante.isEmpty()) {
@@ -73,7 +73,7 @@ public class SeccionController {
   public void removerEstudiante(int seccionId, int estudianteId) throws Exception {
     Seccion seccion = buscarPorId(seccionId);
     if (seccion == null) {
-      throw new IllegalArgumentException("No existe sección con ID " + seccionId + ".");
+      throw new IllegalArgumentException("No existe seccion con ID " + seccionId + ".");
     }
     seccion.removerEstudiante(estudianteId);
     seccionRepo.actualizar(seccion);
@@ -94,11 +94,11 @@ public class SeccionController {
   public void eliminar(int id) throws Exception {
     Seccion seccion = buscarPorId(id);
     if (seccion == null) {
-      throw new IllegalArgumentException("No existe sección con ID " + id + ".");
+      throw new IllegalArgumentException("No existe seccion con ID " + id + ".");
     }
     if (!seccion.listarEstudiantes().isEmpty()) {
       throw new IllegalArgumentException(
-          "No se puede eliminar: la sección tiene estudiantes inscritos. Remuévalos primero.");
+          "No se puede eliminar: la seccion tiene estudiantes inscritos. Remuevalos primero.");
     }
     seccionRepo.eliminar(id);
   }
