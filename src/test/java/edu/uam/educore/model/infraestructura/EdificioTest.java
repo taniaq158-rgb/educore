@@ -1,5 +1,6 @@
 
 
+
 package edu.uam.educore.model.infraestructura;
 
 import static org.junit.jupiter.api.Assertions.*;
