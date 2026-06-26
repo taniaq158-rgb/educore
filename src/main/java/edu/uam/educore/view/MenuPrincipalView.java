@@ -40,7 +40,7 @@ public class MenuPrincipalView extends VistaBase {
           mostrarMensaje("¡Hasta pronto!");
           corriendo = false;
         }
-        default -> mostrarError("Opción invalida. Ingrese un numero del 0 al 3.");
+        default -> mostrarError("Opción inválida. Ingrese un número del 0 al 3.");
       }
     }
   }
@@ -48,15 +48,15 @@ public class MenuPrincipalView extends VistaBase {
   public void mostrarBienvenida() {
     System.out.println("╔══════════════════════════════════════╗");
     System.out.println("║        EduCore v1.0                  ║");
-    System.out.println("║  Sistema de Administración Educativa ║");
+    System.out.println("║  Sistema de Administracion Educativa ║");
     System.out.println("╚══════════════════════════════════════╝");
   }
 
   public int mostrarMenuPrincipal() {
-    System.out.println("\n_____ MENU PRINCIPAL _____");
+    System.out.println("\n--- MENÚ PRINCIPAL ---");
     System.out.println("1. Gestion de Estudiantes");
     System.out.println("2. Gestion de Empleados");
-    System.out.println("3. Gestion Academica (Edificios, Aulas, Secciones)");
+    System.out.println("3. Gestion Académica (Edificios, Aulas, Secciones)");
     System.out.println("0. Salir");
     System.out.print("Seleccione una opcion: ");
     return leerEntero();

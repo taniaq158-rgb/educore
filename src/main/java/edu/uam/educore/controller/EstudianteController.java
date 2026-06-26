@@ -73,7 +73,7 @@ public class EstudianteController {
     repo.eliminar(id);
   }
 
-  // ── Helpers internos ──────────────────────────────────────────────────────
+  // Helpers internos
 
   private void validarBase(String nombre, String apellidos, String email, String carnet) {
     if (nombre.isEmpty() || apellidos.isEmpty() || carnet.isEmpty()) {
