@@ -59,6 +59,10 @@ public class Empleado extends Persona {
     return tipo.toString();
   }
 
+  
+  public TipoEmpleado getTipoEnum() {
+  return tipo;
+}
   @Override
   public String getInfo() {
     return String.format(
