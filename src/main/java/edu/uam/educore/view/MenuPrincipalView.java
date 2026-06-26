@@ -40,7 +40,7 @@ public class MenuPrincipalView extends VistaBase {
           mostrarMensaje("¡Hasta pronto!");
           corriendo = false;
         }
-        default -> mostrarError("Opción inválida. Ingrese un número del 0 al 3.");
+        default -> mostrarError("Opción invalida. Ingrese un numero del 0 al 3.");
       }
     }
   }
