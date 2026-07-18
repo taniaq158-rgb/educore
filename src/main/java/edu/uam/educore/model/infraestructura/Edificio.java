@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class Edificio {
 
-  private final int id;
+  private int id;
   private String codigo;
   private String nombre;
   private final List<Aula> aulas = new ArrayList<>();
@@ -19,6 +19,10 @@ public class Edificio {
 
   public int getId() {
     return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCodigo() {
@@ -66,8 +70,4 @@ public class Edificio {
     }
     return Optional.empty();
   }
-
-    public void setId(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
