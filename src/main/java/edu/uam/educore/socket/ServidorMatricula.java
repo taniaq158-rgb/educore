@@ -87,10 +87,96 @@ public class ServidorMatricula {
    *
    * <p>Referencia del patrón JDBC: EstudianteRepoSql.
    */
-  private int procesarLote(String archivo) throws Exception {
-    // Acá va su lógica: leer el CSV de entradaDir.resolve(archivo), abrir la conexión con
-    // setAutoCommit(false) y matricular todo el lote en UNA transacción (commit al final,
-    // rollback si cualquier renglón falla). Ver el javadoc de arriba y EstudianteRepoSql.
-    throw new UnsupportedOperationException("Matrícula aún no implementada");
+  
+   private int procesarLote(String archivo) throws Exception {
+  java.util.List<String[]> lineas = new java.util.ArrayList<>();
+  try (java.io.BufferedReader br =
+      java.nio.file.Files.newBufferedReader(entradaDir.resolve(archivo))) {
+    String linea;
+    while ((linea = br.readLine()) != null) {
+      linea = linea.trim();
+      if (linea.isEmpty() || linea.startsWith("carnet")) continue;
+      lineas.add(linea.split(","));
+    }
   }
+
+  edu.uam.educore.db.ConfiguracionBD cfg =
+      edu.uam.educore.db.ConfiguracionBD.desdeArchivo(".env");
+  try (java.sql.Connection con =
+      edu.uam.educore.db.Conexion.getConnection(cfg.url(), cfg.usuario(), cfg.contrasena())) {
+    con.setAutoCommit(false);
+    try {
+      int count = 0;
+      for (String[] partes : lineas) {
+        String carnet = partes[0].trim();
+        String codigoSeccion = partes[1].trim();
+
+        // 1. Buscar estudiante por carnet
+        int estudianteId = -1;
+        try (java.sql.PreparedStatement ps =
+            con.prepareStatement("SELECT id FROM estudiante WHERE carnet=?")) {
+          ps.setString(1, carnet);
+          try (java.sql.ResultSet rs = ps.executeQuery()) {
+            if (!rs.next()) throw new Exception("Carnet no existe: " + carnet);
+            estudianteId = rs.getInt("id");
+          }
+        }
+
+        // 2. Buscar sección por código y obtener capacidad
+        int seccionId = -1;
+        int capacidad = 0;
+        try (java.sql.PreparedStatement ps =
+            con.prepareStatement(
+                "SELECT s.id, a.capacidad FROM seccion s"
+                    + " JOIN aula a ON s.aula_id = a.id WHERE s.codigo=?")) {
+          ps.setString(1, codigoSeccion);
+          try (java.sql.ResultSet rs = ps.executeQuery()) {
+            if (!rs.next()) throw new Exception("Sección no existe: " + codigoSeccion);
+            seccionId = rs.getInt("id");
+            capacidad = rs.getInt("capacidad");
+          }
+        }
+
+        // 3. Verificar cupo
+        int inscritos = 0;
+        try (java.sql.PreparedStatement ps =
+            con.prepareStatement(
+                "SELECT COUNT(*) FROM matricula WHERE seccion_id=?")) {
+          ps.setInt(1, seccionId);
+          try (java.sql.ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) inscritos = rs.getInt(1);
+          }
+        }
+        if (inscritos >= capacidad) throw new Exception("Cupo lleno en sección: " + codigoSeccion);
+
+        // 4. Verificar duplicado
+        try (java.sql.PreparedStatement ps =
+            con.prepareStatement(
+                "SELECT COUNT(*) FROM matricula WHERE seccion_id=? AND estudiante_id=?")) {
+          ps.setInt(1, seccionId);
+          ps.setInt(2, estudianteId);
+          try (java.sql.ResultSet rs = ps.executeQuery()) {
+            if (rs.next() && rs.getInt(1) > 0)
+              throw new Exception("Matrícula duplicada: " + carnet + " en " + codigoSeccion);
+          }
+        }
+
+        // 5. Insertar
+        try (java.sql.PreparedStatement ps =
+            con.prepareStatement(
+                "INSERT INTO matricula (seccion_id, estudiante_id) VALUES (?, ?)")) {
+          ps.setInt(1, seccionId);
+          ps.setInt(2, estudianteId);
+          ps.executeUpdate();
+        }
+        count++;
+      }
+      con.commit();
+      return count;
+    } catch (Exception e) {
+      con.rollback();
+      throw e;
+    }
+  }
+}
 }

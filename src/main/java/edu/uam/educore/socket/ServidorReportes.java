@@ -76,9 +76,51 @@ public class ServidorReportes {
    * consultas COUNT(*).
    */
   private String generarYGuardar() throws Exception {
-    // Acá va su lógica: contar en la BD (estudiante, empleado, seccion, aula, matricula), armar
-    // el texto del reporte, escribirlo como TXT en salidaDir (Files.createDirectories +
-    // Files.writeString con timestamp) y devolver ese contenido.
-    return "Reporte aún no implementado.";
+  String url = ConfiguracionBD.desdeArchivo(".env").url();
+  String usuario = ConfiguracionBD.desdeArchivo(".env").usuario();
+  String contrasena = ConfiguracionBD.desdeArchivo(".env").contrasena();
+
+  long estudiantes = 0, empleados = 0, secciones = 0, aulas = 0, matriculas = 0;
+
+  try (java.sql.Connection con = edu.uam.educore.db.Conexion.getConnection(url, usuario, contrasena)) {
+    try (java.sql.PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM estudiante");
+        java.sql.ResultSet rs = ps.executeQuery()) {
+      if (rs.next()) estudiantes = rs.getLong(1);
+    }
+    try (java.sql.PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM empleado");
+        java.sql.ResultSet rs = ps.executeQuery()) {
+      if (rs.next()) empleados = rs.getLong(1);
+    }
+    try (java.sql.PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM seccion");
+        java.sql.ResultSet rs = ps.executeQuery()) {
+      if (rs.next()) secciones = rs.getLong(1);
+    }
+    try (java.sql.PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM aula");
+        java.sql.ResultSet rs = ps.executeQuery()) {
+      if (rs.next()) aulas = rs.getLong(1);
+    }
+    try (java.sql.PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM matricula");
+        java.sql.ResultSet rs = ps.executeQuery()) {
+      if (rs.next()) matriculas = rs.getLong(1);
+    }
   }
+
+  String timestamp = java.time.LocalDateTime.now()
+      .format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+  String contenido =
+      "EduCore ------ Reporte del sistema\n"
+      + "Generado: " + timestamp + "\n"
+      + "   \n"
+      + "Estudiantes : " + estudiantes + "\n"
+      + "Empleados   : " + empleados + "\n"
+      + "Secciones   : " + secciones + "\n"
+      + "Aulas       : " + aulas + "\n"
+      + "Matrículas  : " + matriculas + "\n";
+
+  java.nio.file.Files.createDirectories(salidaDir);
+  java.nio.file.Files.writeString(
+      salidaDir.resolve("reporte_" + timestamp + ".txt"), contenido);
+
+  return contenido;
+}
 }
