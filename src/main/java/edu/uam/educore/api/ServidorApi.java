@@ -71,10 +71,6 @@ public class ServidorApi {
     new SeccionController(seccionRepo, empleadoRepo, estudianteRepo, edificioRepo);
     
     
-    
-    
-    
-    
 
     Javalin app =
         Javalin.create(
