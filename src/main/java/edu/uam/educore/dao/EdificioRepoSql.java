@@ -43,7 +43,6 @@ public class EdificioRepoSql extends Repositorio<Edificio> {
 
   @Override
   public void actualizar(Edificio e) throws Exception {
-    // Actualiza datos del edificio
     String sqlEdificio = "UPDATE edificio SET codigo=?, nombre=? WHERE id=?";
     try (Connection con = abrir();
         PreparedStatement ps = con.prepareStatement(sqlEdificio)) {
@@ -52,8 +51,6 @@ public class EdificioRepoSql extends Repositorio<Edificio> {
       ps.setInt(3, e.getId());
       ps.executeUpdate();
     }
-    // Sincroniza las aulas: borra las existentes y reinserta
-    
     String sqlBorrar = "DELETE FROM aula WHERE edificio_id=?";
     String sqlAula =
         "INSERT INTO aula (id, numero, capacidad, tipo, edificio_id) VALUES (?, ?, ?, ?, ?)";
@@ -87,8 +84,7 @@ public class EdificioRepoSql extends Repositorio<Edificio> {
   @Override
   public Optional<Edificio> buscarPorId(int id) throws Exception {
     try (Connection con = abrir();
-        PreparedStatement ps =
-            con.prepareStatement("SELECT * FROM edificio WHERE id=?")) {
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM edificio WHERE id=?")) {
       ps.setInt(1, id);
       try (ResultSet rs = ps.executeQuery()) {
         if (rs.next()) {
@@ -117,8 +113,7 @@ public class EdificioRepoSql extends Repositorio<Edificio> {
   }
 
   private Edificio mapearEdificio(ResultSet rs) throws Exception {
-    Edificio e = new Edificio(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombre"));
-    return e;
+    return new Edificio(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombre"));
   }
 
   private void cargarAulas(Edificio edificio) throws Exception {
