@@ -85,6 +85,7 @@ public class ServidorApi {
                   Exception.class,
                   (e, ctx) -> ctx.status(500).json(Map.of("error", e.getMessage())));
 
+              registrarEstudiantes(cfg, estudianteController);
               registrarEmpleados(cfg, empleadoController);
               registrarEdificios(cfg, edificioController);
               registrarSecciones(cfg, seccionController);
